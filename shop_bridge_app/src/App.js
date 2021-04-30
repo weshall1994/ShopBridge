@@ -1,16 +1,27 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './styles/app.css'
+import LoginForm from './LoginForm';
+import { BrowserRouter } from 'react-router-dom';
+export const appContext = React.createContext();
 function App() {
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
+  async function authUser(userCredentials) {
+    setIsUserAuthenticated(true)
+  }
   return (
-    <div className="h-64">
-      <div className="p-4 m-4 bg-green-600">
-        <h1 className="text-2xl font-bold text-white">Tailwind CSS Demo</h1>
-      </div>
-      <div className="p-4 m-4 bg-green-300 h-full">
-        <h2 className="text-green-900">Have much fun using Tailwind CSS with React</h2>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Button </button>
-      </div>
+    <div>
+      {isUserAuthenticated &&
+        <appContext.Provider value={{ isUserAuthenticated, setIsUserAuthenticated }}>
+          <BrowserRouter>
+
+          </BrowserRouter>
+        </appContext.Provider>
+      }
+      {!isUserAuthenticated &&
+        <LoginForm authUser={authUser} />
+      }
     </div>
   );
 }
