@@ -107,7 +107,7 @@ function AdminSideBar() {
                 />
               </div>
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
-                {navigation.map((item) => (
+                {navigation.map((item, index) => (
                   <Link
                     key={item.name}
                     to={item.href}
