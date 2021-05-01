@@ -4,7 +4,7 @@ import Serialize from 'form-serialize';
 import MessagePopUps from '../../../Common/Componets/MessagePopUps';
 
 function AddOrEditProduct(props) {
-  const { IsEdit, productToEdit, categoryNames } = props;
+  const { IsEdit, productToEdit, categoryNames, setIsAddProduct } = props;
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setIsFail] = useState(false);
   const [category, setCategory] = useState(categoryNames ? categoryNames[0] : "")
@@ -27,16 +27,20 @@ function AddOrEditProduct(props) {
       .then(res => {
         if (res.status === 200) {
           props.getAllProducts();
-          props.setIsAddProduct(false)
           setIsSuccess(true);
-          setTimeout(() => (false), 3000)
+          setTimeout(() => {
+            setIsSuccess(false)
+            setIsAddProduct(false)
+          }, 3000)
         }
       })
       .catch(err => {
         console.log(err)
-        props.setIsAddProduct(false)
         setIsFail(true)
-        setTimeout(() => setIsFail(false), 3000)
+        setTimeout(() => {
+          setIsFail(false)
+          setIsAddProduct(false)
+        }, 3000)
       });
   }
 
@@ -59,15 +63,19 @@ function AddOrEditProduct(props) {
           props.getAllProducts();
           setIsSuccess(true);
           setTimeout(() => {
-            setIsSuccess(false);
+            setIsSuccess(false)
+            setIsAddProduct(false)
           }, 3000)
         }
       })
       .catch(err => {
         console.log(err)
-
+        setIsFail(true)
+        setTimeout(() => {
+          setIsFail(false)
+          setIsAddProduct(false)
+        }, 3000)
       });
-    props.setIsAddProduct(false)
   }
 
   return (
@@ -127,7 +135,7 @@ function AddOrEditProduct(props) {
             </div>
           </div>
           <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="button" onClick={() => { props.setIsAddProduct(false) }} className="mt-3 mx-2 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
+            <button type="button" onClick={() => { setIsAddProduct(false) }} className="mt-3 mx-2 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm">
               Cancel
             </button>
             <button type="submit" className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

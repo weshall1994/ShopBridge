@@ -7,7 +7,7 @@ function MessagePopUps(props) {
       setColor(props.messageType === "Info" ? "blue" : "red")
     }
     console.log("props", props)
-  }, [props])
+  }, [])
   return (
     <div>
       <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">

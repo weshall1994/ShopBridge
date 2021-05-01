@@ -13,6 +13,7 @@ function Products(props) {
   const [productToDelete, setProductToDelete] = useState();
   const [productToEdit, setProductToEdit] = useState();
   const [isEditProduct, setIsEditProduct] = useState(false);
+  const [isAddProduct, setIsAddProduct] = useState(false);
   const { products, categoryNames } = props;
 
   async function deleteProduct() {
@@ -52,7 +53,7 @@ function Products(props) {
                 type="text" name="searchProducts" id="searchProducts" placeholder="Search..." className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
             <div className={"flex relative "}>
-              <button type="button" onClick={() => { setIsEditProduct(true) }} className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
+              <button type="button" onClick={() => { setIsAddProduct(true) }} className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
                 Add Product
               </button>
             </div>
@@ -172,14 +173,14 @@ function Products(props) {
           </div>
         </div>
       }
-      {isEditProduct &&
+      {(isEditProduct || isAddProduct) &&
         <div className="fixed z-10 inset-0 mt-10 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
           <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
             <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
             <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-                <button type="button" onClick={() => { setIsEditProduct(false) }} className="bg-white rounded-md text-gray-400 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                <button type="button" onClick={() => { isEditProduct ? setIsEditProduct(false) : setIsAddProduct(false) }} className="bg-white rounded-md text-gray-400 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                   <span className="sr-only">Close</span>
                   <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -195,13 +196,23 @@ function Products(props) {
                   </div>
                 </div>
               </div>
-              <AddOrEditProduct
-                setIsAddProduct={setIsEditProduct}
-                IsEdit={true}
-                getAllProducts={props.getAllProducts}
-                productToEdit={productToEdit}
-                categoryNames={categoryNames ? categoryNames : []}
-              />
+              {isEditProduct &&
+                <AddOrEditProduct
+                  setIsAddProduct={setIsEditProduct}
+                  IsEdit={true}
+                  getAllProducts={props.getAllProducts}
+                  productToEdit={productToEdit}
+                  categoryNames={categoryNames ? categoryNames : []}
+                />
+              }
+              {isAddProduct &&
+                <AddOrEditProduct
+                  setIsAddProduct={setIsAddProduct}
+                  IsEdit={false}
+                  getAllProducts={props.getAllProducts}
+                  categoryNames={categoryNames ? categoryNames : []}
+                />
+              }
             </div>
           </div>
         </div>
