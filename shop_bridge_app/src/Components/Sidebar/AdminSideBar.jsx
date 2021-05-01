@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   BellIcon,
@@ -13,7 +13,8 @@ import {
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
 import AdminRouters from '../../Routers/AdminRouters'
-
+import { appContext } from '../../App'
+import { Link } from 'react-router-dom'
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Team', href: '#', icon: UsersIcon, current: false },
@@ -23,9 +24,7 @@ const navigation = [
   { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign out', path: '/' },
 ]
 
 function classNames(...classes) {
@@ -33,6 +32,7 @@ function classNames(...classes) {
 }
 
 function AdminSideBar() {
+  const { setIsUserAuthenticated } = useContext(appContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
@@ -123,11 +123,7 @@ function AdminSideBar() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                alt="Workflow"
-              />
+              <h2 className="text-2xl font-medium leading-7 text-white sm:text-2xl sm:truncate">ShopBridge</h2>
             </div>
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 space-y-1">
@@ -217,7 +213,8 @@ function AdminSideBar() {
                           <Menu.Item key={item.name}>
                             {({ active }) => (
                               <a
-                                href={item.href}
+                                onClick={item.path === "Sign out" ? setIsUserAuthenticated(false) : undefined}
+                                href={item.path}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
