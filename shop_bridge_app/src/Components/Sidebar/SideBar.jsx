@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   BellIcon,
@@ -13,11 +13,20 @@ import {
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
 import AdminRouters from '../../Routers/AdminRouters'
+import CustomerRouters from '../../Routers/CustomerRouters'
 import { appContext } from '../../App'
 import { Link } from 'react-router-dom'
-const navigation = [
+const adminNavigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Team', href: '#', icon: UsersIcon, current: false },
+  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+]
+const customerNavigation = [
+  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+  { name: 'Customer', href: '#', icon: UsersIcon, current: false },
   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
@@ -32,7 +41,16 @@ function classNames(...classes) {
 }
 
 function AdminSideBar() {
-  const { setIsUserAuthenticated } = useContext(appContext)
+  const [navigation, setNavigation] = useState([])
+  useEffect(() => {
+    if (user === "Admin") {
+      setNavigation(adminNavigation)
+    }
+    if (user === "Customer") {
+      setNavigation(customerNavigation)
+    }
+  }, [])
+  const { setIsUserAuthenticated, user } = useContext(appContext)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
@@ -237,7 +255,12 @@ function AdminSideBar() {
         <main className="flex-1 relative overflow-y-auto focus:outline-none">
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <AdminRouters />
+              {user === "Admin" &&
+                <AdminRouters />
+              }
+              {user === "Customer" &&
+                <CustomerRouters />
+              }
             </div>
           </div>
         </main>

@@ -23,7 +23,7 @@ function LoginForm(Props) {
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <h2 className="mb-2 text-center text-2xl font-medium text-indigo-600 justify-self-center mx-auto">
-              SHOP BRIDGE
+              ShopBridge
             </h2>
             <div className="flex justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 py-3 bg-yellow-300 rounded-lg text-indigo-600 bg-opacity-100" viewBox="0 0 20 20" fill="currentColor">

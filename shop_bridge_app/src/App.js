@@ -5,10 +5,7 @@ import './styles/app.css'
 import LoginForm from './LoginForm';
 import { BrowserRouter } from 'react-router-dom';
 import MessagePopUps from './Common/Componets/MessagePopUps';
-import AdminRouters from './Routers/AdminRouters'
-import CustomerRouters from './Routers/CustomerRouters'
-import AdminSideBar from './Components/Sidebar/AdminSideBar';
-import CustomerSidebar from './Components/Sidebar/CustomerSidebar';
+import SideBar from './Components/Sidebar/SideBar';
 export const appContext = React.createContext();
 function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -29,21 +26,9 @@ function App() {
   return (
     <div>
       {isUserAuthenticated &&
-        <appContext.Provider value={{ isUserAuthenticated, setIsUserAuthenticated }}>
+        <appContext.Provider value={{ isUserAuthenticated, setIsUserAuthenticated, user }}>
           <BrowserRouter>
-            {
-              user === "Admin" &&
-              <>
-                <AdminSideBar />
-              </>
-            }
-            {
-              user === "Customer" &&
-              <>
-                <CustomerSidebar />
-                <CustomerRouters />
-              </>
-            }
+            <SideBar />
           </BrowserRouter>
         </appContext.Provider>
       }
