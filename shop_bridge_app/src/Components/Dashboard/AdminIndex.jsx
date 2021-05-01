@@ -1,35 +1,11 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import HocGetAllProducts from '../../Common/Componets/HocGetAllProducts'
 import DailySellInfo from './Components/DailySellInfo'
 import DashboardCard from './Components/DashboardCard'
-let dummyCategories = []
-function DashboardIndex() {
-  const [products, setProducts] = useState([])
-  const [categoryNames, setCategoryNames] = useState([])
-  useEffect(() => {
-    getAllProducts()
-  }, [])
 
-  async function getAllProducts() {
-    await axios.get('https://fakestoreapi.com/products')
-      .then(res => {
-        if (res.data) {
-          setProducts(res.data)
-          console.log("products", res.data)
-          if (res.data.length > 0) {
-            res.data.forEach(pr => {
-              if (!dummyCategories.includes(pr.category)) {
-                dummyCategories.push(pr.category)
-              }
-            })
-          }
-          setCategoryNames(dummyCategories)
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+function DashboardIndex(props) {
+  console.log("props", props)
+  const { products, categoryNames } = props;
   return (
     <div>
       <div className="border-b border-gray-400">
@@ -40,14 +16,14 @@ function DashboardIndex() {
         <ul className="grid grid-cols-1 mb-6 gap-2 sm:gap-3 sm:grid-cols-2 xl:grid-cols-3 mt-3">
           <DashboardCard
             initials={"TP"}
-            length={products.length}
+            length={products ? products.length : 0}
             color={"pink"}
             path={"/products"}
             heading={"Total Products"} />
 
           <DashboardCard
             initials={"TC"}
-            length={categoryNames.length}
+            length={categoryNames ? categoryNames.length : 0}
             color={"blue"}
             path={"/products"}
             heading={"Total categories"} />
@@ -57,7 +33,7 @@ function DashboardIndex() {
               <DashboardCard
                 key={index}
                 initials={c.charAt(0) + c.charAt(1)}
-                length={products.filter(p => p.category == c).length}
+                length={products ? products.filter(p => p.category == c).length : 0}
                 color={"blue"}
                 path={"/products"}
                 heading={c} />
@@ -70,6 +46,7 @@ function DashboardIndex() {
         {categoryNames &&
           categoryNames.map((c, index) => (
             <DailySellInfo
+              key={index}
               category={c}
               stat={(100 * Math.random()).toFixed(2)}
               changeType={(100 * Math.random()).toFixed(0) % 2 === 0 ? "increase" : ""}
@@ -83,4 +60,4 @@ function DashboardIndex() {
   )
 }
 
-export default DashboardIndex
+export default HocGetAllProducts(DashboardIndex)
