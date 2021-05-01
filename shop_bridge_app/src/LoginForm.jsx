@@ -38,9 +38,10 @@ function LoginForm(Props) {
                 <div className="mt-1">
                   <input id="email"
                     onChange={handleEmailChange}
-                    name="email" autoComplete="email"
+                    name="email"
+                    autoComplete="email"
                     placeholder="Email / Username"
-                    className="appearance-none block w-full px-3 py-2 border-b border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
                 </div>
               </div>
 
@@ -48,10 +49,12 @@ function LoginForm(Props) {
                 <div className="mt-1">
                   <input id="password"
                     onChange={handlePasswordChange}
-                    name="password" type="password"
+                    name="password"
+                    type='password'
                     autoComplete="current-password"
                     placeholder="Password"
-                    className="appearance-none block w-full px-3 py-2 border-b border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                    className="block w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  />
                 </div>
               </div>
 

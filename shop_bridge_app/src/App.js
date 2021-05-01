@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 import MessagePopUps from './Common/Componets/MessagePopUps';
 import AdminRouters from './Routers/AdminRouters'
 import CustomerRouters from './Routers/CustomerRouters'
+import AdminSideBar from './Components/Sidebar/AdminSideBar';
+import CustomerSidebar from './Components/Sidebar/CustomerSidebar';
 export const appContext = React.createContext();
 function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -30,9 +32,17 @@ function App() {
         <appContext.Provider value={{ isUserAuthenticated, setIsUserAuthenticated }}>
           <BrowserRouter>
             {
-              user === "Admin" ?
-                <AdminRouters /> :
+              user === "Admin" &&
+              <>
+                <AdminSideBar />
+              </>
+            }
+            {
+              user === "Customer" &&
+              <>
+                <CustomerSidebar />
                 <CustomerRouters />
+              </>
             }
           </BrowserRouter>
         </appContext.Provider>

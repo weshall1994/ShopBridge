@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CustomerSidrbar() {
+function CustomerSidebar() {
   return (
     <div>
 
@@ -8,4 +8,4 @@ function CustomerSidrbar() {
   )
 }
 
-export default CustomerSidrbar
+export default CustomerSidebar
