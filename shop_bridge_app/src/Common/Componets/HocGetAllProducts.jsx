@@ -35,7 +35,8 @@ const HocGetAllProducts = OriginalComponent => {
     return (
       <OriginalComponent
         products={products}
-        categoryNames={categoryNames} />
+        categoryNames={categoryNames}
+        getAllProducts={getAllProducts} />
     )
   }
   return NewComponent

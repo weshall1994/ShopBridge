@@ -4,7 +4,6 @@ import DailySellInfo from './Components/DailySellInfo'
 import DashboardCard from './Components/DashboardCard'
 
 function DashboardIndex(props) {
-  console.log("props", props)
   const { products, categoryNames } = props;
   return (
     <div>
