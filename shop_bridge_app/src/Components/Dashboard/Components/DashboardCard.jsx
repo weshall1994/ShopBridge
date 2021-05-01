@@ -1,16 +1,6 @@
 import React, { Fragment } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import { ClockIcon, HomeIcon, MenuAlt1Icon, ViewListIcon, XIcon } from '@heroicons/react/outline'
-import {
-  ChevronRightIcon,
-  DotsVerticalIcon,
-  DuplicateIcon,
-  PencilAltIcon,
-  SearchIcon,
-  SelectorIcon,
-  TrashIcon,
-  UserAddIcon,
-} from '@heroicons/react/solid'
+import { Menu, Transition } from '@headlessui/react'
+import { DotsVerticalIcon } from '@heroicons/react/solid'
 import { Link } from 'react-router-dom'
 
 function classNames(...classes) {
@@ -21,15 +11,15 @@ function DashboardCard(props) {
     <div>
       <li className="relative col-span-1 flex shadow-sm rounded-md">
         <div
-          className={`bg-${props ? props.color : "pink"}-600 flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md`}
+          className={`bg-${props ? props.color : "pink"}-600 uppercase flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md`}
         >
           {props ? props.initials : ""}
         </div>
         <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
           <div className="flex-1 px-4 py-2 text-sm truncate">
-            <a href="#" className="text-gray-900 font-medium hover:text-gray-600">
-              {'Total Products'}
-            </a>
+            <Link to={props ? props.path : "/"} className="text-gray-900 uppercase font-medium hover:text-gray-600">
+              {props ? props.heading : ""}
+            </Link>
             <p className="text-gray-500">{props ? props.length : ""} Products</p>
           </div>
           <Menu as="div" className="flex-shrink-0 pr-2">
