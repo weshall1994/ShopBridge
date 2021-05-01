@@ -12,6 +12,7 @@ function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   const [isAuthFailed, setIsAuthFailed] = useState(false);
   const [user, setUser] = useState("")
+
   async function authUser(userCredentials) {
     if (userCredentials.username === "Admin" || userCredentials.username === "Customer") {
       setIsUserAuthenticated(true)
@@ -26,7 +27,7 @@ function App() {
   }
   useEffect(() => {
     console.log("isUserAuthenticated", isUserAuthenticated)
-  }, [isUserAuthenticated])
+  }, [])
   return (
     <div>
       {isUserAuthenticated &&
