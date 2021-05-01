@@ -7,7 +7,10 @@ import {
   FolderIcon,
   HomeIcon,
   InboxIcon,
+  LogoutIcon,
   MenuAlt2Icon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
   UsersIcon,
   XIcon,
 } from '@heroicons/react/outline'
@@ -17,12 +20,10 @@ import CustomerRouters from '../../Routers/CustomerRouters'
 import { appContext } from '../../App'
 import { Link } from 'react-router-dom'
 const adminNavigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Products', href: '/products', icon: ShoppingBagIcon, current: false },
+  { name: 'Orders', href: '/orders', icon: ShoppingCartIcon, current: false },
+  { name: 'Logout', href: '/signout', icon: LogoutIcon, current: false },
 ]
 const customerNavigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -30,10 +31,10 @@ const customerNavigation = [
   { name: 'Projects', href: '#', icon: FolderIcon, current: false },
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  { name: 'Logout', href: '/signout', icon: LogoutIcon, current: false },
 ]
 const userNavigation = [
-  { name: 'Sign out', path: '/' },
+  { name: 'Sign out', path: '/signout' },
 ]
 
 function classNames(...classes) {
@@ -111,21 +112,19 @@ function AdminSideBar() {
                 />
               </div>
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
-                <nav className="px-2 space-y-1">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600',
-                        'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                      )}
-                    >
-                      <item.icon className="mr-4 h-6 w-6 text-indigo-300" aria-hidden="true" />
-                      {item.name}
-                    </a>
-                  ))}
-                </nav>
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={classNames(
+                      item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600',
+                      'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                    )}
+                  >
+                    <item.icon className="mr-4 h-6 w-6 text-indigo-300" aria-hidden="true" />
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             </div>
           </Transition.Child>
@@ -146,17 +145,17 @@ function AdminSideBar() {
             <div className="mt-5 flex-1 flex flex-col">
               <nav className="flex-1 px-2 space-y-1">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className={classNames(
                       item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                     )}
                   >
-                    <item.icon className="mr-3 h-6 w-6 text-indigo-300" aria-hidden="true" />
+                    <item.icon className="mr-4 h-6 w-6 text-indigo-300" aria-hidden="true" />
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
@@ -230,16 +229,15 @@ function AdminSideBar() {
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name}>
                             {({ active }) => (
-                              <a
-                                onClick={item.path === "Sign out" ? setIsUserAuthenticated(false) : undefined}
-                                href={item.path}
+                              <Link
+                                to={item.path}
                                 className={classNames(
                                   active ? 'bg-gray-100' : '',
                                   'block px-4 py-2 text-sm text-gray-700'
                                 )}
                               >
                                 {item.name}
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                         ))}
