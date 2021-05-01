@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import HocGetAllProducts from '../../Common/Componets/HocGetAllProducts'
 import Common from '../../Common/Common'
 import axios from 'axios';
+import MessagePopUps from '../../Common/Componets/MessagePopUps';
 
 
 function Products(props) {
   const [isDelete, setIsDelete] = useState(false);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [isDeleteFail, setIsDeleteFail] = useState(false);
   const [productToDelete, setProductToDelete] = useState();
   const [productToEdit, setProductToEdit] = useState();
   const [isEditProduct, setIsEditProduct] = useState(false);
@@ -17,10 +20,18 @@ function Products(props) {
       .then(res => {
         if (res.status === 200) {
           props.getAllProducts();
+          setIsDeleteSuccess(true);
+          setTimeout(() => {
+            setIsDeleteSuccess(false);
+          }, 3000)
         }
       })
       .catch(err => {
         console.log(err)
+        setIsDeleteFail(true)
+        setTimeout(() => {
+          setIsDeleteFail(false);
+        }, 3000)
       });
     setIsDelete(false)
   }
@@ -76,7 +87,7 @@ function Products(props) {
                 </thead>
                 <tbody id="productTable" className="bg-white divide-y divide-gray-200">
                   {products.map((product, index) => (
-                    <tr key={product.index}>
+                    <tr key={index}>
                       <td className="px-6 py-4 whitespace-normal">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
@@ -149,6 +160,20 @@ function Products(props) {
             </div>
           </div>
         </div>
+      }
+      {isDeleteSuccess &&
+        <MessagePopUps
+          messageType={"Info"}
+          messageText={"Product Deleted Successfully..."}
+          color={"blue"}
+        />
+      }
+      {isDeleteFail &&
+        <MessagePopUps
+          messageType={""}
+          messageText={"Something Went wrong..."}
+          color={"red"}
+        />
       }
     </div>
   )
