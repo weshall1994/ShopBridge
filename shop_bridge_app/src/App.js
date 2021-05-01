@@ -5,13 +5,17 @@ import './styles/app.css'
 import LoginForm from './LoginForm';
 import { BrowserRouter } from 'react-router-dom';
 import MessagePopUps from './Common/Componets/MessagePopUps';
+import AdminRouters from './Routers/AdminRouters'
+import CustomerRouters from './Routers/CustomerRouters'
 export const appContext = React.createContext();
 function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
   const [isAuthFailed, setIsAuthFailed] = useState(false);
+  const [user, setUser] = useState("")
   async function authUser(userCredentials) {
     if (userCredentials.username === "Admin" || userCredentials.username === "Customer") {
       setIsUserAuthenticated(true)
+      setUser(userCredentials.username)
     }
     else {
       setIsAuthFailed(true)
@@ -25,7 +29,11 @@ function App() {
       {isUserAuthenticated &&
         <appContext.Provider value={{ isUserAuthenticated, setIsUserAuthenticated }}>
           <BrowserRouter>
-
+            {
+              user === "Admin" ?
+                <AdminRouters /> :
+                <CustomerRouters />
+            }
           </BrowserRouter>
         </appContext.Provider>
       }
