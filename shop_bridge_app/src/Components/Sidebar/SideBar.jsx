@@ -2,16 +2,12 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
+  UserCircleIcon,
   LogoutIcon,
   MenuAlt2Icon,
   ShoppingBagIcon,
   ShoppingCartIcon,
-  UsersIcon,
   XIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
@@ -26,11 +22,10 @@ const adminNavigation = [
   { name: 'Logout', href: '/signout', icon: LogoutIcon, current: false },
 ]
 const customerNavigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Customer', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Cart', href: '/cart', icon: ShoppingCartIcon, current: false },
+  { name: 'Orders', href: '/orders', icon: ShoppingBagIcon, current: false },
+  { name: 'My Account', href: '/account', icon: UserCircleIcon, current: false },
   { name: 'Logout', href: '/signout', icon: LogoutIcon, current: false },
 ]
 const userNavigation = [
