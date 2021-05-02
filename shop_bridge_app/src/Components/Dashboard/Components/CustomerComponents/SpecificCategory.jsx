@@ -10,7 +10,7 @@ function SpecificCategory(props) {
             <img className="h-24 w-24 shadow-full mt-2" src={props.product ? props.product.image : ""} />
           </div>
           <div>
-            <h2 className="text-gray-800 text-sm font-bold overflow-none truncate sm:truncate">{props.product ? props.product.title : ""}</h2>
+            <h2 className="text-gray-800 text-sm font-bold overflow-none md:truncate sm:truncate lg:truncate">{props.product ? props.product.title : ""}</h2>
           </div>
           <div className={"flex justify-center md:justify-end"}>
             <CurrencyRupeeIcon className="h-4 w-4 mt-1 text-gray-500" />
