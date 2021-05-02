@@ -10,7 +10,7 @@ function CustomerIndex(props) {
     <div>
       {products &&
         <>
-          <div className={`grid lg:grid-cols-4 gap-1 md:grid-cols-3 sm:grid-cols-2 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 w-full h-56 shadow-lg`}>
+          <div className={`relative grid lg:grid-cols-4 gap-1 md:grid-cols-2 sm:grid-cols-1 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 w-full h-56 shadow-lg`}>
             {categoryNames &&
               <>
                 {
@@ -35,15 +35,15 @@ function CustomerIndex(props) {
             <>
               {
                 categoryNames.length > 0 &&
-                <div>
+                <div className="relative">
                   {
                     categoryNames.map((c, index) => (
                       <div key={index}>
-                        <div className={`grid lg:grid-cols-2 mt-${index === 0 ? "20" : "10"} flex justify-self-end mb-4`}>
+                        <div className={`relative grid lg:grid-cols-2 mt-${index === 0 ? "20" : "10"} flex justify-self-end mb-4`}>
                           <a href="#" className="flex-inline font-bold uppercase text-indigo-500">{c}</a>
                           <a href="#" className="flex-inline font-bold uppercase justify-self-end text-indigo-500">{"View All"}</a>
                         </div>
-                        <div className={`grid lg:grid-cols-4 gap-1 md:grid-cols-3  sm:grid-cols-2  bg-gradient-to-l from-green-400 to-blue-500 w-full h-96 shadow-xl`}>
+                        <div className={`grid lg:grid-cols-4 gap-1 md:grid-cols-2  sm:grid-cols-1  bg-gradient-to-l from-green-400 to-blue-500 w-full h-96 shadow-xl`}>
                           {products.filter(p => p.category == c).map((p, pIndex) => (
                             <>
                               {pIndex < 4 &&
@@ -63,10 +63,7 @@ function CustomerIndex(props) {
                 </div>
               }
             </>
-
           }
-
-
         </>}
     </div>
   )
