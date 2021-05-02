@@ -2,10 +2,13 @@ import { CurrencyRupeeIcon } from '@heroicons/react/outline'
 import React, { useEffect, useState } from 'react'
 
 function CustHeaderCard(props) {
-  console.log("props", props)
-
-  let i = 0;
-
+  let counter = props.length;
+  const [i, setCounter] = useState(props.length)
+  // setInterval(() => {
+  //   counter--;
+  //   console.log("============", i)
+  //   setCounter(counter)
+  // }, 3000)
   return (
     <div>
       <div className="max-w-md py-4 mx-4 px-8 bg-white shadow-lg rounded-lg my-16">

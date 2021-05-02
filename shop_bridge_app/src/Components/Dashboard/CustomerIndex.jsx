@@ -4,6 +4,7 @@ import CustHeaderCard from './Components/CustomerComponents/CustHeaderCard';
 
 function CustomerIndex(props) {
   const { products, categoryNames } = props;
+  let i = 0
   return (
     <div>
       {products &&
@@ -18,7 +19,7 @@ function CustomerIndex(props) {
                       <CustHeaderCard key={index}
                         categoryname={c}
                         category={products.filter(p => p.category == c)}
-                        length={products.filter(p => p.category == c).length} />
+                        length={products.filter(p => p.category == c).length - 1} />
                     ))
                   }
                 </>
