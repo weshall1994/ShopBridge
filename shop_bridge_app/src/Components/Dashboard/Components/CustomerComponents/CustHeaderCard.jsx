@@ -17,7 +17,7 @@ function CustHeaderCard(props) {
                   <img className="h-28 w-28 rounded-full border-2 border-gray-200 shadow-xl" src={props.category[i].image} />
                 </div>
                 <div>
-                  <h2 className="text-gray-800 text-sm mt-5 font-bold overflow-none truncate">{i + " " + props.category[i].title}</h2>
+                  <h2 className="text-gray-800 text-sm mt-5 font-bold overflow-none truncate">{props.category[i].title}</h2>
                 </div>
                 <div className={"flex justify-center md:justify-end"}>
                   <CurrencyRupeeIcon className="h-4 w-4 text-gray-500 mt-3" />
