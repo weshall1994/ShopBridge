@@ -21,7 +21,7 @@ function SpecificCategory(props) {
               href={"#"}
               className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600"
               aria-describedby="tier-standard" >
-              Buy Now
+              <CurrencyRupeeIcon className="h-4 w-4 mt-1 text-white" /> &nbsp; Buy Now
             </a>
           </div>
         </div>
