@@ -3,17 +3,23 @@ import axios from 'axios'
 
 let dummyCategories = []
 
+
 const HocGetAllProducts = OriginalComponent => {
 
   function NewComponent() {
     const [products, setProducts] = useState([])
     const [categoryNames, setCategoryNames] = useState([])
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
+
     useEffect(() => {
       getAllProducts()
     }, [])
 
     async function getAllProducts() {
-      await axios.get('https://fakestoreapi.com/products')
+      const cancelToken = axios.CancelToken;
+      const source = cancelToken.source();
+      await axios.get('https://fakestoreapi.com/products', { cancelToken: source.token })
         .then(res => {
           if (res.data) {
             setProducts(res.data)
@@ -29,8 +35,14 @@ const HocGetAllProducts = OriginalComponent => {
           }
         })
         .catch(err => {
-          console.log(err)
+          if (axios.isCancel(err)) {
+            return "axios request cancelled";
+          } else {
+            console.log(err)
+          }
+
         })
+      source.cancel();
     }
     return (
       <OriginalComponent
