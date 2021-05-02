@@ -99,12 +99,8 @@ function AdminSideBar() {
                   </button>
                 </div>
               </Transition.Child>
-              <div className="flex-shrink-0 flex items-center px-4">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                  alt="Workflow"
-                />
+              <div className="flex items-center flex-shrink-0 px-4">
+                <h2 className="text-2xl font-medium leading-7 text-white sm:text-2xl sm:truncate">ShopBridge</h2>
               </div>
               <div className="mt-5 flex-1 h-0 overflow-y-auto">
                 {navigation.map((item, index) => (
