@@ -124,15 +124,13 @@ function AdminSideBar() {
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14" aria-hidden="true">
-            {/* Dummy element to force sidebar to shrink to fit close icon */}
           </div>
         </Dialog>
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
       <div className="hidden bg-indigo-700 md:flex md:flex-shrink-0">
-        <div className="flex flex-col w-64">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
+        <div className="flex flex-col w-56">
           <div className="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
               <h2 className="text-2xl font-medium leading-7 text-white sm:text-2xl sm:truncate">ShopBridge</h2>
