@@ -7,8 +7,8 @@ function CustomerIndex(props) {
   const { products, categoryNames } = props;
   let i = 0
   return (
-    <div className={"relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8"}>
-      <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-4 md:grid-cols-2 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 lg:max-w-none">
+    <div className={"relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6"}>
+      <div className="max-w-lg mx-auto grid gap-5 lg:grid-cols-4 md:grid-cols-2 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 lg:max-w-none">
         {categoryNames.map((c, index) => (
           <CustHeaderCard key={index}
             categoryname={c}
@@ -20,8 +20,8 @@ function CustomerIndex(props) {
       {categoryNames.map((c, index) => (
         <div key={index} className="max-w-lg mx-auto grid gap-5 lg:max-w-none">
           <div className={`relative grid lg:grid-cols-2 mt-${index === 0 ? "20" : "10"} flex justify-self-end mb-4`}>
-            <a href="#" className="flex-inline font-bold uppercase text-indigo-500">{c}</a>
-            <a href="#" className="flex-inline font-bold uppercase justify-self-end text-indigo-500">{"View All"}</a>
+            <a href="#" className="font-bold uppercase text-indigo-500">{c}</a>
+            <a href="#" className="font-bold uppercase justify-self-end text-indigo-500">{"View All"}</a>
           </div>
           <div className={`max-w-lg mx-auto grid gap-5 lg:grid-cols-4 md:grid-cols-2 bg-gradient-to-l from-green-400 to-blue-500 lg:max-w-none`}>
             {products.filter(p => p.category == c).map((p, pIndex) => (
