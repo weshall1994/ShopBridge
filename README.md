@@ -1,6 +1,8 @@
 # ShopBridge
 "ShopBridge" is an e-commerce application that helps track the different items for sale.
 
+### Languages and libraries used => React.js, TailwindUi.css(For Syling), Fake APIs https://github.com/keikaavousi/fake-store-api
+
 ### Steps to run an Application.
 
 ### Prerequisite => You should have npm and yarn installed on your computer.
@@ -14,3 +16,6 @@
 ### 4. execute command "yarn start" from vs code terminal to run the application.
 
 ### 5. To login as Admin Enter username "Admin" or to login as Customer Enter username "Customer" other wise you will get Un-Authenticate error.
+
+
+
