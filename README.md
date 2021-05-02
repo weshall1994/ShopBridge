@@ -7,7 +7,7 @@
 
 ### 1. Download or clone the this repo in your local computer.
 
-### 2. oprn CLONED_DIR\ShopBridge\shop_bridge_app folder in vs code.
+### 2. open CLONED_DIR\ShopBridge\shop_bridge_app folder in vs code.
 
 ### 3. execute command "yarn install" from vs code terminal to install required node modules.
 
