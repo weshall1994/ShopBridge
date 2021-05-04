@@ -14,11 +14,11 @@ const HocGetAllProducts = OriginalComponent => {
 
     useEffect(() => {
       getAllProducts()
+      return () => source.cancel();
     }, [])
 
     async function getAllProducts() {
-      const cancelToken = axios.CancelToken;
-      const source = cancelToken.source();
+
       await axios.get('https://fakestoreapi.com/products', { cancelToken: source.token })
         .then(res => {
           if (res.data) {
@@ -36,13 +36,12 @@ const HocGetAllProducts = OriginalComponent => {
         })
         .catch(err => {
           if (axios.isCancel(err)) {
-            return "axios request cancelled";
+            console.log("axios request cancelled");
           } else {
             console.log(err)
           }
 
         })
-      source.cancel();
     }
     return (
       <OriginalComponent
